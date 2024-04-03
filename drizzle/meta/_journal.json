@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1712096323494,
+      "tag": "0000_bizarre_roxanne_simpson",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1712099488606,
+      "tag": "0001_shocking_barracuda",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1712100870247,
+      "tag": "0002_material_doomsday",
+      "breakpoints": true
+    }
+  ]
+}
