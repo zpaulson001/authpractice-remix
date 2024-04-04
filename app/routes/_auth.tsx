@@ -8,8 +8,10 @@ export const links: LinksFunction = () => [
 
 export default function AuthPage() {
   return (
-    <div>
-      <Outlet />
+    <div className="flex flex-col justify-around items-center h-screen">
+      <div className="bg-white p-8 rounded-lg shadow-md">
+        <Outlet />
+      </div>
     </div>
   );
 }

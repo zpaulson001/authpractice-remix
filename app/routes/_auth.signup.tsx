@@ -1,5 +1,4 @@
-import { ActionFunctionArgs } from '@remix-run/node';
-import { redirect } from '@remix-run/node';
+import { redirect, ActionFunctionArgs } from '@remix-run/node';
 import { loginUser } from '~/utils/auth.server';
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -12,16 +11,16 @@ export async function action({ request }: ActionFunctionArgs) {
   const user = await loginUser(username, password);
 
   if (user) {
-    return redirect('/success');
+    return redirect('/succes');
   } else {
     return null;
   }
 }
 
-export default function LoginPage() {
+export default function Signup() {
   return (
     <form className="grid gap-4" method="POST">
-      <input type="hidden" name="login-type" value="login" />
+      <input type="hidden" name="login-type" value="signup" />
       <label>
         <p>Username</p>
         <input
@@ -42,7 +41,7 @@ export default function LoginPage() {
         className="bg-blue-500 rounded p-2 text-white hover:bg-blue-400"
         type="submit"
       >
-        Log in
+        Sign up
       </button>
     </form>
   );
