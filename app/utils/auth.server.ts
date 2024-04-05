@@ -21,3 +21,27 @@ export async function loginUser(username: string, password: string) {
     return null;
   }
 }
+
+export async function createUser(username: string, password: string) {
+  const passwordHash = await argon2.hash(password);
+
+  const query = await db.query.users.findFirst({
+    where: eq(users.username, username),
+  });
+
+  if (query) {
+    return null;
+  }
+
+  try {
+    const user = await db
+      .insert(users)
+      .values({ username, passwordHash })
+      .onConflictDoNothing()
+      .returning({ id: users.id, username: users.username });
+    return user;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
