@@ -1,7 +1,11 @@
-import { ActionFunctionArgs } from '@remix-run/node';
-import { redirect } from '@remix-run/node';
+import {
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  redirect,
+} from '@remix-run/node';
 import { Link } from '@remix-run/react';
 import { loginUser } from '~/utils/auth.server';
+import { isLoggedIn } from '~/utils/guards.server';
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -9,9 +13,11 @@ export async function action({ request }: ActionFunctionArgs) {
   const password = formData.get('password') as string;
   console.log(formData);
 
-  const user = await loginUser(username, password);
+  return await loginUser(username, password);
+}
 
-  if (user) {
+export async function loader({ request }: LoaderFunctionArgs) {
+  if (await isLoggedIn(request)) {
     return redirect('/success');
   } else {
     return null;
