@@ -1,17 +1,17 @@
 import { redirect, ActionFunctionArgs } from '@remix-run/node';
-import { loginUser } from '~/utils/auth.server';
+import { Link } from '@remix-run/react';
+import { createUser } from '~/utils/auth.server';
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const loginType = formData.get('login-type');
   const username = formData.get('username') as string;
   const password = formData.get('password') as string;
   console.log(formData);
 
-  const user = await loginUser(username, password);
+  const user = await createUser(username, password);
 
   if (user) {
-    return redirect('/succes');
+    return redirect('/success');
   } else {
     return null;
   }
@@ -20,6 +20,18 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function Signup() {
   return (
     <form className="grid gap-4" method="POST">
+      <div>
+        <p className="text-2xl font-bold ">Create an account</p>
+        <p className="text-sm text-gray-600">
+          {`Already have an account? `}
+          <Link
+            to="/login"
+            className="text-blue-600 visited:text-purple-700 underline"
+          >
+            Log in
+          </Link>
+        </p>
+      </div>
       <input type="hidden" name="login-type" value="signup" />
       <label>
         <p>Username</p>
