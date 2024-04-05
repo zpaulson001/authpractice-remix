@@ -32,13 +32,13 @@ export default function Signup() {
           </Link>
         </p>
       </div>
-      <input type="hidden" name="login-type" value="signup" />
       <label>
         <p>Username</p>
         <input
           className="border border-gray-400 rounded px-2 py-1"
           type="text"
           name="username"
+          required
         />
       </label>
       <label>
@@ -47,6 +47,7 @@ export default function Signup() {
           className="border border-gray-400 rounded px-2 py-1"
           type="password"
           name="password"
+          required
         />
       </label>
       <button
