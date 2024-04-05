@@ -1,10 +1,10 @@
 import { ActionFunctionArgs } from '@remix-run/node';
 import { redirect } from '@remix-run/node';
+import { Link } from '@remix-run/react';
 import { loginUser } from '~/utils/auth.server';
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const loginType = formData.get('login-type');
   const username = formData.get('username') as string;
   const password = formData.get('password') as string;
   console.log(formData);
@@ -21,6 +21,18 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function LoginPage() {
   return (
     <form className="grid gap-4" method="POST">
+      <div>
+        <p className="text-2xl font-bold ">{`Welcome : )`}</p>
+        <p className="text-sm text-gray-600">
+          New here?{' '}
+          <Link
+            to="/signup"
+            className="text-blue-600 visited:text-purple-700 underline"
+          >
+            Create an account
+          </Link>
+        </p>
+      </div>
       <input type="hidden" name="login-type" value="login" />
       <label>
         <p>Username</p>
