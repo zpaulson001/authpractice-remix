@@ -1,4 +1,4 @@
-import type { MetaFunction } from '@remix-run/node';
+import { redirect, type MetaFunction } from '@remix-run/node';
 
 export const meta: MetaFunction = () => {
   return [
@@ -6,6 +6,10 @@ export const meta: MetaFunction = () => {
     { name: 'description', content: 'Welcome to Remix!' },
   ];
 };
+
+export async function loader() {
+  return redirect('/login');
+}
 
 export default function Index() {
   return (
